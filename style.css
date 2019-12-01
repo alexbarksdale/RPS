@@ -2,9 +2,16 @@
 /* Color Properties */
 /* ########################### */
 :root {
-    --main-color: #4c4c4c;
+    --main-txt-color: #4c4c4c;
+    --sub-txt-color: #636363;
+
     --card-color: #fff;
-    --point-bg-color: #f05f5f;
+    --point-bg-color: #f0a85f;
+    --rps-color: #dcdcdc;
+    --hand-color: #909090;
+
+    --win: #35ff69;
+    --lose: #ff3535;
 }
 
 /* ########################### */
@@ -13,15 +20,27 @@
 * {
     margin: 0;
     padding: 0;
+    letter-spacing: 0.5px;
     font-family: 'Nunito', sans-serif;
+    transition: all 0.3s ease-in-out;
 }
 
 body {
     background-color: #1c273c;
 }
 
+.btn {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.mr-top {
+    margin-top: 150px;
+}
+
 /* ########################### */
-/* Game Header Properties */
+/* Game Properties */
 /* ########################### */
 .game-container {
     margin: 0px 40px;
@@ -31,8 +50,7 @@ body {
     grid-gap: 20px;
 }
 
-.game-header {
-    margin-top: 150px;
+.game-wrapper {
     padding: 30px;
 
     text-align: center;
@@ -41,35 +59,74 @@ body {
     box-shadow: 0px 3px 0px 0px #a0a0a0;
 }
 
-.game-header h1 {
-    color: var(--main-color);
+.title {
+    color: var(--main-txt-color);
     font-size: 50px;
+}
+
+.wl-msg {
+    margin: 20px;
+
+    display: none;
+    color: var(--sub-txt-color);
+}
+
+/* ########################### */
+/* RPS Properties */
+/* ########################### */
+.rps-container {
+    margin: 45px 0px;
+
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.rps-select {
+    font-size: 75px;
+
+    padding: 5px 30px;
+    border-radius: 8px;
+    background-color: var(--rps-color);
+}
+
+.rps-select:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+    box-shadow: 0px 3px 0px 0px #5c7bc0;
+}
+
+.rps-select i {
+    color: var(--hand-color);
 }
 
 /* ########################### */
 /* Score Properties */
 /* ########################### */
-.score-container {
-    margin-top: 150px;
+.control-container {
     padding: 30px;
+    height: fit-content;
+    margin-bottom: 20px;
+
     background-color: var(--card-color);
     border-radius: 8px;
     box-shadow: 0px 3px 0px 0px #a0a0a0;
 }
 
-.score-container h1 {
-    color: #4c4c4c;
+.control-container h1 {
+    margin-bottom: 10px;
+
+    color: var(--main-txt-color);
     text-align: center;
 }
 
-.score-wrapper {
+.control-wrapper {
     display: flex;
     justify-content: center;
     justify-content: space-evenly;
 }
 
-.score-wrapper h2 {
-    color: #4c4c4c;
+.control-wrapper h2 {
+    color: var(--main-txt-color);
 }
 
 .score {
@@ -77,4 +134,31 @@ body {
     background-color: var(--point-bg-color);
     padding: 2px 10px;
     border-radius: 8px;
+}
+
+.btn-settings {
+    color: #fff;
+
+    display: flex;
+    padding: 5px 10px;
+    margin: 30px auto 0px;
+    border-radius: 8px;
+}
+
+.btn-settings:hover {
+    opacity: 0.8;
+}
+
+.btn-settings h1 {
+    color: #fff;
+    margin: auto;
+    font-size: 19px;
+}
+
+.start {
+    background-color: #21cc4d;
+}
+
+.reset {
+    background-color: #ff6565;
 }
