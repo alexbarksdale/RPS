@@ -1,0 +1,80 @@
+/* ########################### */
+/* Color Properties */
+/* ########################### */
+:root {
+    --main-color: #4c4c4c;
+    --card-color: #fff;
+    --point-bg-color: #f05f5f;
+}
+
+/* ########################### */
+/* Global Properties */
+/* ########################### */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    background-color: #1c273c;
+}
+
+/* ########################### */
+/* Game Header Properties */
+/* ########################### */
+.game-container {
+    margin: 0px 40px;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 20px;
+}
+
+.game-header {
+    margin-top: 150px;
+    padding: 30px;
+
+    text-align: center;
+    background-color: var(--card-color);
+    border-radius: 8px;
+    box-shadow: 0px 3px 0px 0px #a0a0a0;
+}
+
+.game-header h1 {
+    color: var(--main-color);
+    font-size: 50px;
+}
+
+/* ########################### */
+/* Score Properties */
+/* ########################### */
+.score-container {
+    margin-top: 150px;
+    padding: 30px;
+    background-color: var(--card-color);
+    border-radius: 8px;
+    box-shadow: 0px 3px 0px 0px #a0a0a0;
+}
+
+.score-container h1 {
+    color: #4c4c4c;
+    text-align: center;
+}
+
+.score-wrapper {
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+}
+
+.score-wrapper h2 {
+    color: #4c4c4c;
+}
+
+.score {
+    color: var(--card-color);
+    background-color: var(--point-bg-color);
+    padding: 2px 10px;
+    border-radius: 8px;
+}
