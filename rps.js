@@ -32,59 +32,49 @@ resetBtn.addEventListener('click', () => {
 });
 
 rockBtn.addEventListener('click', () => {
-    gameHandler('r');
+    gameHandler('rock');
 });
 
 paperBtn.addEventListener('click', () => {
-    gameHandler('p');
+    gameHandler('paper');
 });
 
 scissorsBtn.addEventListener('click', () => {
-    gameHandler('s');
+    gameHandler('scissor');
 });
 
 const botHandler = () => {
-    const handChoices = ['r', 'p', 's'];
+    const handChoices = ['rock', 'paper', 'scissor'];
     const botChoice = Math.floor(Math.random() * 3);
 
     return handChoices[botChoice];
 };
 
-const wltConvert = (char) => {
-    if (char === 'r') return 'Rock';
-    if (char === 'p') return 'Paper';
-    return 'Scissors';
-};
-
 const win = (botHandPick) => {
     userScore += 1;
     userScoreSpan.innerHTML = userScore;
-    outcome = wltConvert(botHandPick);
 
     wlMsg.style.display = 'block';
     userPickMsg.style.color = '#2bc752';
     userPickMsg.innerHTML = 'won!';
-    resultMsg.innerHTML = `${outcome}.`;
+    resultMsg.innerHTML = `${botHandPick}.`;
 };
 
 const lose = (botHandPick) => {
     botScore += 1;
     botScoreSpan.innerHTML = botScore;
-    outcome = wltConvert(botHandPick);
 
     wlMsg.style.display = 'block';
     userPickMsg.style.color = '#ff3535';
     userPickMsg.innerHTML = 'lost!';
-    resultMsg.innerHTML = `${outcome}.`;
+    resultMsg.innerHTML = `${botHandPick}.`;
 };
 
 const tie = (botHandPick) => {
-    outcome = wltConvert(botHandPick);
-
     wlMsg.style.display = 'block';
     userPickMsg.style.color = '#f0a85f';
     userPickMsg.innerHTML = 'tied!';
-    resultMsg.innerHTML = `${outcome}.`;
+    resultMsg.innerHTML = `${botHandPick}.`;
 };
 
 const gameHandler = (userPick) => {
@@ -92,19 +82,19 @@ const gameHandler = (userPick) => {
 
     // CASE ORDER: loss, win, tie
     switch (userPick + botHandPick) {
-        case 'rp':
-        case 'ps':
-        case 'sr':
+        case 'rockpaper':
+        case 'paperscissor':
+        case 'scissorrock':
             lose(botHandPick);
             break;
-        case 'rs':
-        case 'pr':
-        case 'sp':
+        case 'rockscissor':
+        case 'paperrock':
+        case 'scissorpaper':
             win(botHandPick);
             break;
-        case 'rr':
-        case 'pp':
-        case 'ss':
+        case 'rockrrock':
+        case 'paperpaper':
+        case 'scissorscissor':
             tie(botHandPick);
             break;
     }
