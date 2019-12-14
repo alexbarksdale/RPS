@@ -7,24 +7,41 @@ const botScoreSpan = document.getElementById('bot_score');
 const wlMsg = document.getElementById('wl-msg');
 const wl = document.getElementById('wl');
 const result = document.getElementById('result');
+const restartMsg = document.getElementById('restartMsg');
 // RPS Buttons
 const rock = document.getElementById('rock');
 const paper = document.getElementById('paper');
 const scissors = document.getElementById('scissors');
+const resetBtn = document.getElementById('resetBtn');
 
-const playerHandler = (() => {
-    rock.addEventListener('click', () => {
-        gameHandler('r');
-    });
+resetBtn.addEventListener('click', () => {
+    if (userScore || botScore > 0) {
+        userScore = 0;
+        botScore = 0;
+        userScoreSpan.innerHTML = 0;
+        botScoreSpan.innerHTML = 0;
+        restartMsg.style.display = 'block';
+        wlMsg.style.display = 'none';
 
-    paper.addEventListener('click', () => {
-        gameHandler('p');
-    });
+        setTimeout(() => {
+            restartMsg.style.display = 'none';
+        }, 2000);
+    } else {
+        return;
+    }
+});
 
-    scissors.addEventListener('click', () => {
-        gameHandler('s');
-    });
-})();
+rock.addEventListener('click', () => {
+    gameHandler('r');
+});
+
+paper.addEventListener('click', () => {
+    gameHandler('p');
+});
+
+scissors.addEventListener('click', () => {
+    gameHandler('s');
+});
 
 const botHandler = () => {
     const handChoices = ['r', 'p', 's'];
@@ -67,16 +84,6 @@ const tie = (botHandPick) => {
     wl.style.color = '#f0a85f';
     wl.innerHTML = 'tied!';
     result.innerHTML = `${outcome}.`;
-};
-
-const reset = () => {
-    if (userScore || botScore > 0) {
-        userScoreSpan.innerHTML = 0;
-        botScoreSpan.innerHTML = 0;
-        wlMsg.innerHTML = 'Game reset!';
-    } else {
-        return;
-    }
 };
 
 const gameHandler = (userPick) => {

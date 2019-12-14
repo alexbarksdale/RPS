@@ -147,6 +147,14 @@ video#bgVideo {
     text-align: center;
 }
 
+.control-container h3 {
+    display: none;
+    color: var(--sub-txt-color);
+    margin-top: -10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
 .control-wrapper {
     display: flex;
     justify-content: center;
