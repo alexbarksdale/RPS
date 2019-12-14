@@ -6,6 +6,7 @@ const botScoreSpan = document.getElementById('bot_score');
 // Message
 const wlMsg = document.getElementById('wl-msg');
 const wl = document.getElementById('wl');
+const result = document.getElementById('result');
 // RPS Buttons
 const rock = document.getElementById('rock');
 const paper = document.getElementById('paper');
@@ -32,29 +33,40 @@ const botHandler = () => {
     return handChoices[botPick];
 };
 
-const win = () => {
+const wltConvert = (char) => {
+    if (char === 'r') return 'Rock';
+    if (char === 'p') return 'Paper';
+    if (char === 's') return 'Scissors';
+};
+
+const win = (botHandPick) => {
     userScore += 1;
     userScoreSpan.innerHTML = userScore;
+    outcome = wltConvert(botHandPick);
+
     wlMsg.style.display = 'block';
     wl.style.color = '#2bc752';
     wl.innerHTML = 'won!';
-    console.log('win went offf');
+    result.innerHTML = `${outcome}.`;
 };
 
-const lose = () => {
+const lose = (botHandPick) => {
     botScore += 1;
     botScoreSpan.innerHTML = botScore;
+    outcome = wltConvert(botHandPick);
+
     wlMsg.style.display = 'block';
     wl.style.color = '#ff3535';
     wl.innerHTML = 'lost!';
-    console.log('lost went off');
+    result.innerHTML = `${outcome}.`;
 };
 
-const tie = () => {
+const tie = (botHandPick) => {
+    outcome = wltConvert(botHandPick);
     wlMsg.style.display = 'block';
     wl.style.color = '#f0a85f';
     wl.innerHTML = 'tied!';
-    console.log('tie went off');
+    result.innerHTML = `${outcome}.`;
 };
 
 const reset = () => {
@@ -75,20 +87,17 @@ const gameHandler = (userPick) => {
         case 'rp':
         case 'ps':
         case 'sr':
-            lose();
-            console.log('You lost!');
+            lose(botHandPick);
             break;
         case 'rs':
         case 'pr':
         case 'sp':
-            win();
-            console.log('You won!');
+            win(botHandPick);
             break;
         case 'rr':
         case 'pp':
         case 'ss':
-            tie();
-            console.log('You tied!');
+            tie(botHandPick);
             break;
     }
 };
