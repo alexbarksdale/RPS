@@ -5,14 +5,14 @@ const userScoreSpan = document.getElementById('user_score');
 const botScoreSpan = document.getElementById('bot_score');
 // Message
 const wlMsg = document.getElementById('wl-msg');
-const wl = document.getElementById('wl');
-const result = document.getElementById('result');
-const restartMsg = document.getElementById('restartMsg');
+const userPickMsg = document.getElementById('user-pick');
+const resultMsg = document.getElementById('result-msg');
+const restartMsg = document.getElementById('restart-msg');
 // RPS Buttons
-const rock = document.getElementById('rock');
-const paper = document.getElementById('paper');
-const scissors = document.getElementById('scissors');
-const resetBtn = document.getElementById('resetBtn');
+const rockBtn = document.getElementById('rock');
+const paperBtn = document.getElementById('paper');
+const scissorsBtn = document.getElementById('scissors');
+const resetBtn = document.getElementById('reset-btn');
 
 resetBtn.addEventListener('click', () => {
     if (userScore || botScore > 0) {
@@ -31,29 +31,29 @@ resetBtn.addEventListener('click', () => {
     }
 });
 
-rock.addEventListener('click', () => {
+rockBtn.addEventListener('click', () => {
     gameHandler('r');
 });
 
-paper.addEventListener('click', () => {
+paperBtn.addEventListener('click', () => {
     gameHandler('p');
 });
 
-scissors.addEventListener('click', () => {
+scissorsBtn.addEventListener('click', () => {
     gameHandler('s');
 });
 
 const botHandler = () => {
     const handChoices = ['r', 'p', 's'];
-    const botPick = Math.floor(Math.random() * 3);
+    const botChoice = Math.floor(Math.random() * 3);
 
-    return handChoices[botPick];
+    return handChoices[botChoice];
 };
 
 const wltConvert = (char) => {
     if (char === 'r') return 'Rock';
     if (char === 'p') return 'Paper';
-    if (char === 's') return 'Scissors';
+    return 'Scissors';
 };
 
 const win = (botHandPick) => {
@@ -62,9 +62,9 @@ const win = (botHandPick) => {
     outcome = wltConvert(botHandPick);
 
     wlMsg.style.display = 'block';
-    wl.style.color = '#2bc752';
-    wl.innerHTML = 'won!';
-    result.innerHTML = `${outcome}.`;
+    userPickMsg.style.color = '#2bc752';
+    userPickMsg.innerHTML = 'won!';
+    resultMsg.innerHTML = `${outcome}.`;
 };
 
 const lose = (botHandPick) => {
@@ -73,23 +73,24 @@ const lose = (botHandPick) => {
     outcome = wltConvert(botHandPick);
 
     wlMsg.style.display = 'block';
-    wl.style.color = '#ff3535';
-    wl.innerHTML = 'lost!';
-    result.innerHTML = `${outcome}.`;
+    userPickMsg.style.color = '#ff3535';
+    userPickMsg.innerHTML = 'lost!';
+    resultMsg.innerHTML = `${outcome}.`;
 };
 
 const tie = (botHandPick) => {
     outcome = wltConvert(botHandPick);
+
     wlMsg.style.display = 'block';
-    wl.style.color = '#f0a85f';
-    wl.innerHTML = 'tied!';
-    result.innerHTML = `${outcome}.`;
+    userPickMsg.style.color = '#f0a85f';
+    userPickMsg.innerHTML = 'tied!';
+    resultMsg.innerHTML = `${outcome}.`;
 };
 
 const gameHandler = (userPick) => {
     const botHandPick = botHandler();
 
-    // ORDER: loss, win, tie
+    // CASE ORDER: loss, win, tie
     switch (userPick + botHandPick) {
         case 'rp':
         case 'ps':
